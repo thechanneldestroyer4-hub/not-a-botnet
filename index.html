@@ -3,351 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>notabotnet.site</title>
+    <meta name="description" content="You just got botnetted boiiii. A harmless internet prank, plus a simple guide to what botnets actually are.">
+    <meta name="robots" content="index,follow">
+    <title>notabotnet.site — You just got botnetted boiiii</title>
 
     <style>
-        * {
-            box-sizing: border-box;
+        :root {
+            --bg: #070707;
+            --panel: #101010;
+            --panel-2: #151515;
+            --text: #f5f5f5;
+            --muted: #9a9a9a;
+            --purple: #9b5cff;
+            --border: #242424;
         }
 
-        html,
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
             margin: 0;
-            padding: 0;
-            background: #050505;
-            color: #fff;
+            background: var(--bg);
+            color: var(--text);
             font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.65;
         }
 
-        body {
-            overflow-x: hidden;
-        }
+        a { color: #c6a7ff; }
 
-        /* -----------------------------
-           AD UNIT
-        ----------------------------- */
-
-        .ad-unit {
+        .ad-wrap {
             width: 100%;
-            min-height: 110px;
-            padding: 10px 0;
+            min-height: 120px;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 10px 0;
             background: #080808;
-            border-bottom: 1px solid #141414;
+            border-bottom: 1px solid #151515;
         }
 
-        .ad-unit iframe {
+        .ad-wrap iframe {
             border: 0;
             padding: 0;
             width: 70%;
-            height: 100px; /* IMPORTANT: explicit height */
+            height: 100px;
+            overflow: hidden;
             display: block;
             margin: auto;
-            overflow: hidden;
         }
 
-        /* -----------------------------
-           CENTRE MESSAGE
-        ----------------------------- */
-
-        .hero {
-            min-height: 75vh;
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
             display: flex;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(155, 92, 255, 0.14),
-                    transparent 40%
-                ),
-                #050505;
+            flex-wrap: wrap;
+            gap: 18px;
+            padding: 14px 20px;
+            background: rgba(7, 7, 7, 0.94);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
         }
 
-        .hero-inner {
-            max-width: 1100px;
+        nav a {
+            text-decoration: none;
+            color: #cfcfcf;
+            font-size: 14px;
+        }
+
+        nav a:hover { color: white; }
+
+        .hero {
+            min-height: 68vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background:
+                radial-gradient(circle at 50% 45%, rgba(155,92,255,.16), transparent 36%),
+                var(--bg);
+        }
+
+        .hero-inner { max-width: 1050px; }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            font-size: 12px;
+            color: #737373;
+            margin-bottom: 18px;
         }
 
         h1 {
             margin: 0;
-            font-size: clamp(42px, 9vw, 110px);
-            line-height: 0.9;
-            font-weight: 900;
-            letter-spacing: -0.06em;
+            font-size: clamp(42px, 8vw, 96px);
+            line-height: .92;
+            letter-spacing: -.055em;
             text-transform: uppercase;
         }
 
         .purple {
-            color: #9b5cff;
-
-            text-shadow:
-                0 0 10px rgba(155, 92, 255, 0.8),
-                0 0 35px rgba(155, 92, 255, 0.4);
+            color: var(--purple);
+            text-shadow: 0 0 30px rgba(155,92,255,.35);
         }
 
-        .subtitle {
-            margin-top: 28px;
-            color: #777;
+        .hero p {
+            max-width: 760px;
+            margin: 28px auto 0;
+            color: var(--muted);
             font-size: 18px;
         }
 
-        /* -----------------------------
-           DESKTOP AD GRID
-        ----------------------------- */
+        .buttons {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
 
-        .ad-grid {
+        .button {
+            display: inline-block;
+            padding: 11px 16px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            text-decoration: none;
+            color: white;
+            background: var(--panel);
+        }
+
+        .button:hover { background: var(--panel-2); }
+
+        main.content {
+            width: min(1050px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 70px 0;
+        }
+
+        section {
+            scroll-margin-top: 90px;
+            margin-bottom: 70px;
+        }
+
+        h2 {
+            margin: 0 0 14px;
+            font-size: clamp(28px, 4vw, 44px);
+            line-height: 1.05;
+        }
+
+        h3 {
+            margin: 28px 0 8px;
+            font-size: 20px;
+        }
+
+        .lead {
+            color: #c5c5c5;
+            font-size: 18px;
+        }
+
+        .grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 2px;
-            background: #111;
+            gap: 16px;
+            margin-top: 24px;
         }
 
-        .ad-grid .ad-unit {
-            min-width: 0;
+        .card {
+            padding: 24px;
+            background: linear-gradient(180deg, #111, #0d0d0d);
+            border: 1px solid var(--border);
+            border-radius: 18px;
         }
 
-        /* -----------------------------
-           FOOTER
-        ----------------------------- */
+        .card p { margin-bottom: 0; color: #aaa; }
+
+        .notice {
+            padding: 18px 20px;
+            border: 1px solid #3a2c4f;
+            background: #120d18;
+            border-radius: 14px;
+            color: #cfc2dd;
+        }
+
+        details {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 700;
+        }
 
         footer {
-            padding: 50px 20px;
+            padding: 45px 20px 70px;
             text-align: center;
-            color: #333;
-            font-size: 12px;
+            border-top: 1px solid var(--border);
+            color: #646464;
         }
 
-        /* -----------------------------
-           MOBILE
-        ----------------------------- */
+        .tiny { font-size: 12px; }
 
-        @media (max-width: 700px) {
-            .ad-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ad-unit iframe {
-                width: 95%;
-                height: 100px;
-            }
-
-            .hero {
-                min-height: 60vh;
-            }
+        @media (max-width: 720px) {
+            .ad-wrap iframe { width: 95%; }
+            .grid { grid-template-columns: 1fr; }
+            .hero { min-height: 62vh; padding: 65px 18px; }
+            main.content { width: min(100% - 28px, 1050px); }
         }
     </style>
 </head>
-
 <body>
 
-    <!--
-    ============================================================
-    TOP ADS
-    ============================================================
-    -->
-
-    <div id="top-ads" class="ad-grid"></div>
-
-
-    <!--
-    ============================================================
-    MAIN MESSAGE
-    ============================================================
-    -->
-
-    <main class="hero">
-
-        <div class="hero-inner">
-
-            <h1>
-                YOU JUST GOT<br>
-                <span class="purple">
-                    BOTNETTED BOIIII
-                </span>
-            </h1>
-
-            <div class="subtitle">
-                welcome to notabotnet.site
-            </div>
-
+    <!-- BEGIN AADS AD UNIT 2451844 -->
+    <div class="ad-wrap">
+        <div style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+            <iframe data-aa='2451844'
+                    src='https://acceptable.a-ads.com/2451844/?size=Adaptive'
+                    style='border:0; padding:0; width:70%; height:100px; overflow:hidden;display:block;margin:auto'></iframe>
         </div>
+    </div>
+    <!-- END AADS AD UNIT 2451844 -->
 
+    <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#prank">The prank</a>
+        <a href="#botnets">Botnets</a>
+        <a href="#faq">FAQ</a>
+        <a href="#ads">Advertising</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-inner">
+            <div class="eyebrow">notabotnet.site</div>
+            <h1>YOU JUST GOT<br><span class="purple">BOTNETTED BOIIII</span></h1>
+            <p>
+                Relax. This is a harmless joke website, not an actual botnet.
+                The dramatic headline is the whole gag.
+            </p>
+            <div class="buttons">
+                <a class="button" href="#about">What is this?</a>
+                <a class="button" href="#botnets">What is a botnet?</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <section id="about">
+            <h2>What is notabotnet.site?</h2>
+            <p class="lead">
+                It is a tiny entertainment site built around one deliberately over-the-top internet prank.
+                There is no software download, no background process, and no attempt to control your computer.
+            </p>
+            <div class="grid">
+                <article class="card">
+                    <h3>Just a joke</h3>
+                    <p>The phrase “you just got botnetted boiiii” is intentionally dramatic. Visiting this page does not install a botnet.</p>
+                </article>
+                <article class="card">
+                    <h3>Actually useful</h3>
+                    <p>The rest of the site explains what a botnet really is, why botnets matter, and a few simple ways to protect yourself online.</p>
+                </article>
+                <article class="card">
+                    <h3>No mystery downloads</h3>
+                    <p>This page is ordinary HTML, CSS, and browser-side JavaScript. There is no executable download hidden behind the joke.</p>
+                </article>
+                <article class="card">
+                    <h3>Human-readable</h3>
+                    <p>The site is designed to be understandable rather than pretending to be a security scanner or an infection warning.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="prank">
+            <h2>The prank explained</h2>
+            <p>
+                The joke works because “botnet” sounds alarmingly serious. In reality, the page is simply playing
+                with that idea. Once the headline has done its job, the site tells you exactly what happened instead
+                of trying to scare you into clicking something.
+            </p>
+            <div class="notice">
+                <strong>Important:</strong> If a website claims your computer is infected and immediately demands
+                payment, a download, or a phone call, treat that as a major warning sign. Legitimate security tools
+                should provide enough information for you to verify the claim independently.
+            </div>
+        </section>
+
+        <section id="botnets">
+            <h2>So what actually is a botnet?</h2>
+            <p>
+                A botnet is a collection of internet-connected devices that have been compromised and are being
+                controlled or coordinated by someone else. Botnets can be used for things such as distributed denial
+                of service attacks, spam, credential attacks, or other abusive activity.
+            </p>
+            <h3>How devices end up in one</h3>
+            <p>
+                Common routes include malicious software, compromised accounts, vulnerable services, and social
+                engineering. Keeping software updated, using unique passwords, enabling multi-factor authentication,
+                and avoiding untrusted downloads all reduce risk.
+            </p>
+            <h3>Why this site isn't one</h3>
+            <p>
+                This page doesn't attempt to persist on your machine, communicate with other devices, or execute
+                a hidden payload. The “botnet” exists only in the joke text.
+            </p>
+        </section>
+
+        <section id="faq">
+            <h2>Frequently asked questions</h2>
+            <details>
+                <summary>Did I actually get hacked?</summary>
+                <p>No. The headline is a joke. Simply opening this page does not mean your machine joined a botnet.</p>
+            </details>
+            <details>
+                <summary>Why is this website full of advertising?</summary>
+                <p>The site is experimenting with advertising as a way to support a small independent website. Ads are disclosed here rather than disguised as security warnings or download buttons.</p>
+            </details>
+            <details>
+                <summary>Can I trust a website that says my PC is infected?</summary>
+                <p>Don't trust a scary message on its own. Verify claims through a security product or other independent source, and don't install software or make payments because a random page tells you to.</p>
+            </details>
+            <details>
+                <summary>Who made this?</summary>
+                <p>This is an independent novelty website. The point is the joke, followed by a small amount of genuinely useful security information.</p>
+            </details>
+        </section>
+
+        <section id="ads">
+            <h2>Advertising disclosure</h2>
+            <p>
+                notabotnet.site may display third-party advertisements. Advertising helps support the site and is
+                kept separate from the site's editorial content. Advertisement content is supplied by the advertising
+                network, not written or endorsed by this site.
+            </p>
+            <p class="tiny">
+                We do not ask visitors to click advertisements, and advertising is not presented as a security alert,
+                download prompt, or required step to use the website.
+            </p>
+        </section>
     </main>
 
-
-    <!--
-    ============================================================
-    BOTTOM ADS
-    ============================================================
-    -->
-
-    <div id="bottom-ads" class="ad-grid"></div>
-
+    <!-- BEGIN AADS AD UNIT 2451844 -->
+    <div class="ad-wrap">
+        <div style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+            <iframe data-aa='2451844'
+                    src='https://acceptable.a-ads.com/2451844/?size=Adaptive'
+                    style='border:0; padding:0; width:70%; height:100px; overflow:hidden;display:block;margin:auto'></iframe>
+        </div>
+    </div>
+    <!-- END AADS AD UNIT 2451844 -->
 
     <footer>
-        notabotnet.site
+        <div>notabotnet.site</div>
+        <div class="tiny">A harmless joke website. No actual botnet included.</div>
     </footer>
-
-
-    <script>
-        /*
-         * A-ADS configuration
-         */
-
-        const AADS_ID = "2451844";
-
-        /*
-         * Total number of units the page can eventually create.
-         */
-        const TOTAL_ADS = 100;
-
-        /*
-         * Only create this many initially.
-         *
-         * The rest are loaded when the visitor gets near
-         * the existing ads, which avoids firing 100 requests
-         * simultaneously.
-         */
-        const INITIAL_ADS = 8;
-
-        /*
-         * Number of additional units added per batch.
-         */
-        const BATCH_SIZE = 4;
-
-        let adsCreated = 0;
-
-
-        /*
-         * Create one A-ADS unit.
-         *
-         * Note:
-         * - Explicit HTTPS URL
-         * - Explicit iframe height
-         * - No duplicate id="frame"
-         */
-
-        function createAd() {
-
-            const container = document.createElement("div");
-
-            container.className = "ad-unit";
-
-            container.innerHTML = `
-                <!-- BEGIN AADS AD UNIT 2451844 -->
-
-                <div style="
-                    width: 100%;
-                    margin: auto;
-                    position: relative;
-                    z-index: 99998;
-                ">
-
-                    <iframe
-                        data-aa="${AADS_ID}"
-                        src="https://acceptable.a-ads.com/${AADS_ID}/?size=Adaptive"
-                        style="
-                            border:0;
-                            padding:0;
-                            width:70%;
-                            height:100px;
-                            overflow:hidden;
-                            display:block;
-                            margin:auto;
-                        ">
-                    </iframe>
-
-                </div>
-
-                <!-- END AADS AD UNIT 2451844 -->
-            `;
-
-            return container;
-        }
-
-
-        /*
-         * Add another batch of advertisements.
-         */
-
-        function addAds(count) {
-
-            const top = document.getElementById("top-ads");
-            const bottom = document.getElementById("bottom-ads");
-
-            for (let i = 0; i < count && adsCreated < TOTAL_ADS; i++) {
-
-                const ad = createAd();
-
-                /*
-                 * Alternate between top and bottom so the
-                 * central message remains visible.
-                 */
-
-                if (adsCreated % 2 === 0) {
-                    top.appendChild(ad);
-                } else {
-                    bottom.appendChild(ad);
-                }
-
-                adsCreated++;
-            }
-        }
-
-
-        /*
-         * Initial batch.
-         */
-
-        addAds(INITIAL_ADS);
-
-
-        /*
-         * Sentinel used for lazy loading.
-         */
-
-        const sentinel = document.createElement("div");
-
-        sentinel.style.height = "1px";
-
-        document.body.appendChild(sentinel);
-
-
-        /*
-         * Load more advertisements as the visitor approaches
-         * the end of the page.
-         */
-
-        const observer = new IntersectionObserver(
-            entries => {
-
-                if (!entries[0].isIntersecting) {
-                    return;
-                }
-
-                if (adsCreated >= TOTAL_ADS) {
-                    observer.disconnect();
-                    return;
-                }
-
-                addAds(BATCH_SIZE);
-
-            },
-            {
-                rootMargin: "1200px"
-            }
-        );
-
-
-        observer.observe(sentinel);
-
-    </script>
 
 </body>
 </html>
