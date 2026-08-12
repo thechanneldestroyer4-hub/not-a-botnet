@@ -5,123 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>notabotnet.site</title>
-    <meta name="description" content="You just got botnetted boiiii.">
-
-    <!-- Google AdSense -->
-    <script async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1310614742482419"
-        crossorigin="anonymous"></script>
 
     <style>
         * {
             box-sizing: border-box;
         }
 
-        html, body {
-            margin: 0;
-            min-height: 100%;
-            background: #080808;
-            color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            margin: 0;
+            background: #050505;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        /* Generic ad container */
-        .ad {
+        /* =========================
+           AD WALL
+           ========================= */
+
+        .ad-wall {
             width: 100%;
-            min-height: 90px;
+        }
+
+        .ad-container {
+            width: 100%;
+            min-height: 110px;
+            margin: 0;
+            padding: 10px 0;
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 10px;
-            background: #0d0d0d;
-            border-bottom: 1px solid #1c1c1c;
+            align-items: center;
+            background: #080808;
+            border-bottom: 1px solid #111;
         }
 
-        .ad-bottom {
-            border-top: 1px solid #1c1c1c;
-            border-bottom: none;
+        .ad-container iframe {
+            border: 0;
+            padding: 0;
+            width: 70%;
+            min-height: 90px;
+            overflow: hidden;
+            display: block;
+            margin: auto;
         }
 
-        /* Large central area */
-        main {
-            flex: 1;
+        /* =========================
+           HERO
+           ========================= */
+
+        .hero {
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px 20px;
             text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .message {
-            max-width: 900px;
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(255,255,255,0.015) 4px
+                );
+            pointer-events: none;
         }
 
         h1 {
+            position: relative;
             margin: 0;
-            font-size: clamp(42px, 8vw, 100px);
-            line-height: 0.95;
-            font-weight: 900;
-            letter-spacing: -4px;
+            font-size: clamp(45px, 9vw, 110px);
+            line-height: 0.9;
+            font-weight: 1000;
+            letter-spacing: -5px;
             text-transform: uppercase;
         }
 
-        .boiiii {
-            color: #8b5cf6;
+        .purple {
+            color: #9b5cff;
             text-shadow:
-                0 0 10px rgba(139, 92, 246, 0.5),
-                0 0 35px rgba(139, 92, 246, 0.25);
+                0 0 10px rgba(155, 92, 255, 0.8),
+                0 0 40px rgba(155, 92, 255, 0.4);
         }
 
-        p {
-            margin: 25px 0 0;
-            color: #888;
-            font-size: 16px;
+        .subtitle {
+            position: relative;
+            margin-top: 30px;
+            color: #666;
+            font-size: 18px;
         }
 
-        .glitch {
-            animation: glitch 2.5s infinite;
+        .warning {
+            position: relative;
+            margin-top: 12px;
+            color: #333;
+            font-size: 12px;
         }
 
-        @keyframes glitch {
-            0%, 90%, 100% {
-                transform: translate(0);
-            }
-
-            92% {
-                transform: translate(-3px, 2px);
-            }
-
-            94% {
-                transform: translate(3px, -2px);
-            }
-
-            96% {
-                transform: translate(-2px, 1px);
-            }
-        }
+        /* =========================
+           FOOTER
+           ========================= */
 
         footer {
-            padding: 18px;
             text-align: center;
-            color: #444;
-            font-size: 12px;
+            padding: 50px 20px;
+            color: #333;
             border-top: 1px solid #151515;
         }
 
-        @media (max-width: 600px) {
-            h1 {
-                letter-spacing: -2px;
+        /* Mobile */
+
+        @media (max-width: 700px) {
+            .ad-container iframe {
+                width: 95%;
             }
 
-            .ad {
-                min-height: 70px;
+            .ad-container {
+                min-height: 90px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
             }
         }
     </style>
@@ -129,67 +144,86 @@
 
 <body>
 
-    <!-- Top advertisement -->
-    <div class="ad">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1310614742482419"
-             data-ad-slot="YOUR_AD_SLOT_ID"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+    <!--
+        NOTABOTNET.SITE
+        Absolutely not a botnet.
+    -->
 
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    <div id="topAds" class="ad-wall"></div>
 
-    <main>
+    <main class="hero">
 
-        <!-- Main content -->
-        <section class="message">
-            <h1 class="glitch">
-                You just got<br>
-                <span class="boiiii">botnetted boiiii</span>
-            </h1>
+        <h1>
+            YOU JUST GOT<br>
+            <span class="purple">BOTNETTED BOIIII</span>
+        </h1>
 
-            <p>
-                Don't worry. It's probably fine.
-            </p>
-        </section>
+        <div class="subtitle">
+            welcome to notabotnet.site
+        </div>
 
-        <!-- Advertisement beneath the message -->
-        <div class="ad" style="margin-top: 40px; border: 0; background: transparent;">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1310614742482419"
-                 data-ad-slot="YOUR_AD_SLOT_ID"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <div class="warning">
+            this website contains a frankly irresponsible amount of advertising
         </div>
 
     </main>
 
-    <!-- Bottom advertisement -->
-    <div class="ad ad-bottom">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1310614742482419"
-             data-ad-slot="YOUR_AD_SLOT_ID"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    <div id="bottomAds" class="ad-wall"></div>
 
     <footer>
-        notabotnet.site &nbsp;|&nbsp; absolutely not a botnet
+        notabotnet.site<br><br>
+        definitely not a botnet
     </footer>
+
+    <script>
+        /*
+         * A-ADS UNIT
+         * 2451844
+         */
+
+        const AD_COUNT = 60;
+
+        const adHTML = `
+            <div class="ad-container">
+                <div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                    <iframe
+                        data-aa="2451844"
+                        src="//acceptable.a-ads.com/2451844/?size=Adaptive"
+                        loading="lazy"
+                        style="
+                            border:0;
+                            padding:0;
+                            width:70%;
+                            height:auto;
+                            min-height:90px;
+                            overflow:hidden;
+                            display:block;
+                            margin:auto;
+                        ">
+                    </iframe>
+                </div>
+            </div>
+        `;
+
+        /*
+         * Half the ads above the message,
+         * half below it.
+         */
+
+        const topAds = document.getElementById("topAds");
+        const bottomAds = document.getElementById("bottomAds");
+
+        const topCount = Math.floor(AD_COUNT / 2);
+        const bottomCount = AD_COUNT - topCount;
+
+        for (let i = 0; i < topCount; i++) {
+            topAds.insertAdjacentHTML("beforeend", adHTML);
+        }
+
+        for (let i = 0; i < bottomCount; i++) {
+            bottomAds.insertAdjacentHTML("beforeend", adHTML);
+        }
+    </script>
 
 </body>
 </html>
