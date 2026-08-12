@@ -120,15 +120,15 @@ footer{padding:45px 20px 70px;text-align:center;border-top:1px solid var(--borde
 <div class="ad-wrap-full" id="top-ad-slot"></div>
 
 <nav aria-label="Main navigation">
-  <a data-route="home" class="active">Home</a>
-  <a data-route="about">About</a>
-  <a data-route="prank">The Prank</a>
-  <a data-route="botnets">Botnets 101</a>
-  <a data-route="protection">Protection</a>
-  <a data-route="blog">Blog</a>
-  <a data-route="faq">FAQ</a>
-  <a data-route="advertise">Advertise</a>
-  <a data-route="contact">Contact</a>
+  <a href="#/home" data-route="home" class="active">Home</a>
+  <a href="#/about" data-route="about">About</a>
+  <a href="#/prank" data-route="prank">The Prank</a>
+  <a href="#/botnets" data-route="botnets">Botnets 101</a>
+  <a href="#/protection" data-route="protection">Protection</a>
+  <a href="#/blog" data-route="blog">Blog</a>
+  <a href="#/faq" data-route="faq">FAQ</a>
+  <a href="#/advertise" data-route="advertise">Advertise</a>
+  <a href="#/contact" data-route="contact">Contact</a>
 </nav>
 
 <!-- FLOATING AD -->
@@ -354,9 +354,9 @@ home: () => `
       <h1>YOU JUST GOT<br><span class="purple">BOTNETTED BOIIII</span></h1>
       <p>Relax. This is a harmless joke website, not an actual botnet. The dramatic headline is the whole gag. The ads, however, are very real.</p>
       <div class="buttons">
-        <a class="button primary" data-route="about">What is this?</a>
-        <a class="button" data-route="botnets">What is a botnet?</a>
-        <a class="button" data-route="blog">Read the blog</a>
+        <a class="button primary" href="#/about">What is this?</a>
+        <a class="button" href="#/botnets">What is a botnet?</a>
+        <a class="button" href="#/blog">Read the blog</a>
       </div>
     </div>
   </header>
@@ -512,7 +512,6 @@ blog: () => `
       </div>
     </div>
     <div data-ad-zone="mid-1"></div>
-    <div id="blog-content"></div>
   </section>
 `,
 faq: () => `
@@ -598,7 +597,7 @@ const BLOG_POSTS = {
       <div data-ad-zone="blog-1-b"></div>
       <p>What's new in 2025 is the surrounding context: a web where actual scareware is everywhere, fake security alerts are a billion-dollar industry, and ad networks are happy to host them. The joke hits differently when the threat it's mocking is real.</p>
       <p>That's probably why this site exists at all. The prank is familiar enough to be funny, the threat is real enough to be educational, and the ads are loud enough to be self-aware. Whether that adds up to "good" is a separate question.</p>
-      <p><a data-route="blog">← Back to blog</a></p>
+      <p><a href="#/blog">← Back to blog</a></p>
     </article>
   `,
   '2': `
@@ -621,7 +620,7 @@ const BLOG_POSTS = {
       <p>Close the tab. If it won't close, force-quit the browser. If you're on a phone, clear the browser from your recent apps. Do not call the number. Do not download anything. Do not enter payment information.</p>
       <div data-ad-zone="blog-2-c"></div>
       <p>The reason this scam persists is that it works often enough to be profitable. Even a tiny conversion rate, multiplied by millions of impressions, adds up. The best defense is just knowing the pattern — which is, in a small way, what this entire joke site is trying to teach.</p>
-      <p><a data-route="blog">← Back to blog</a></p>
+      <p><a href="#/blog">← Back to blog</a></p>
     </article>
   `,
   '3': `
@@ -636,7 +635,7 @@ const BLOG_POSTS = {
       <p>The honest answer is that ad-supported web content exists on a spectrum. At one end, you have a single unobtrusive banner. At the other end, you have a page so dense with ads that the content is functionally invisible. This site is intentionally somewhere past the second end.</p>
       <p>If you've made it this far, congratulations — you have a higher tolerance for nonsense than most. Please enjoy one final ad, placed here for no particular reason.</p>
       <div data-ad-zone="blog-3-c"></div>
-      <p><a data-route="blog">← Back to blog</a></p>
+      <p><a href="#/blog">← Back to blog</a></p>
     </article>
   `,
   '4': `
@@ -665,7 +664,7 @@ const BLOG_POSTS = {
       </ul>
       <div data-ad-zone="blog-4-d"></div>
       <p>That's the whole topic. No hoodie required.</p>
-      <p><a data-route="blog">← Back to blog</a></p>
+      <p><a href="#/blog">← Back to blog</a></p>
     </article>
   `
 };
@@ -722,16 +721,6 @@ function router(){
       zone.scrollIntoView({behavior:'smooth', block:'end'});
     };
   }
-
-  // route links
-  document.querySelectorAll('[data-route]').forEach(a=>{
-    if(a.tagName === 'A' || a.tagName === 'BUTTON') return;
-    a.style.cursor = 'pointer';
-    a.onclick = (e)=>{
-      e.preventDefault();
-      location.hash = '#/' + a.dataset.route;
-    };
-  });
 
   // interstitial between route changes (but not on first load)
   if(lastRoute && lastRoute !== route && !interstitialShownFor.has(route)){
