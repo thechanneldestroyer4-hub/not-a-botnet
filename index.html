@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>notabotnet.site</title>
+    <meta name="description" content="You just got botnetted boiiii.">
+
+    <!-- Google AdSense -->
+    <script async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1310614742482419"
+        crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            min-height: 100%;
+            background: #080808;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Generic ad container */
+        .ad {
+            width: 100%;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: #0d0d0d;
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        .ad-bottom {
+            border-top: 1px solid #1c1c1c;
+            border-bottom: none;
+        }
+
+        /* Large central area */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .message {
+            max-width: 900px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(42px, 8vw, 100px);
+            line-height: 0.95;
+            font-weight: 900;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+        }
+
+        .boiiii {
+            color: #8b5cf6;
+            text-shadow:
+                0 0 10px rgba(139, 92, 246, 0.5),
+                0 0 35px rgba(139, 92, 246, 0.25);
+        }
+
+        p {
+            margin: 25px 0 0;
+            color: #888;
+            font-size: 16px;
+        }
+
+        .glitch {
+            animation: glitch 2.5s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+
+            92% {
+                transform: translate(-3px, 2px);
+            }
+
+            94% {
+                transform: translate(3px, -2px);
+            }
+
+            96% {
+                transform: translate(-2px, 1px);
+            }
+        }
+
+        footer {
+            padding: 18px;
+            text-align: center;
+            color: #444;
+            font-size: 12px;
+            border-top: 1px solid #151515;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .ad {
+                min-height: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top advertisement -->
+    <div class="ad">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1310614742482419"
+             data-ad-slot="YOUR_AD_SLOT_ID"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <main>
+
+        <!-- Main content -->
+        <section class="message">
+            <h1 class="glitch">
+                You just got<br>
+                <span class="boiiii">botnetted boiiii</span>
+            </h1>
+
+            <p>
+                Don't worry. It's probably fine.
+            </p>
+        </section>
+
+        <!-- Advertisement beneath the message -->
+        <div class="ad" style="margin-top: 40px; border: 0; background: transparent;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1310614742482419"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+    </main>
+
+    <!-- Bottom advertisement -->
+    <div class="ad ad-bottom">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1310614742482419"
+             data-ad-slot="YOUR_AD_SLOT_ID"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <footer>
+        notabotnet.site &nbsp;|&nbsp; absolutely not a botnet
+    </footer>
+
+</body>
+</html>
