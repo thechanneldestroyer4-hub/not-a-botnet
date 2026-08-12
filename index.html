@@ -1,161 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>notabotnet.site</title>
-  <style>
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: #050505; color: #fff; font-family: Arial, Helvetica, sans-serif; }
-    body { overflow-x: hidden; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .ad-wall {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      padding: 8px;
-      background: #090909;
-    }
+    <title>notabotnet.site</title>
 
-    .ad-box {
-      min-height: 110px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #080808;
-      border: 1px solid #151515;
-      overflow: hidden;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    .ad-box > div {
-      width: 100%;
-      margin: auto;
-      position: relative;
-      z-index: 99998;
-    }
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #050505;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-    .ad-box iframe {
-      border: 0;
-      padding: 0;
-      width: 70%;
-      height: auto;
-      min-height: 90px;
-      overflow: hidden;
-      display: block;
-      margin: auto;
-    }
+        body {
+            overflow-x: hidden;
+        }
 
-    .hero {
-      min-height: 72vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 70px 20px;
-      text-align: center;
-      background:
-        radial-gradient(circle at center, rgba(147, 51, 234, 0.14), transparent 42%),
-        #050505;
-    }
+        /* -----------------------------
+           AD UNIT
+        ----------------------------- */
 
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(42px, 8vw, 110px);
-      line-height: .9;
-      letter-spacing: -0.055em;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
+        .ad-unit {
+            width: 100%;
+            min-height: 110px;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #080808;
+            border-bottom: 1px solid #141414;
+        }
 
-    .hero .purple {
-      color: #a855f7;
-      text-shadow: 0 0 14px rgba(168, 85, 247, .75), 0 0 48px rgba(168, 85, 247, .3);
-    }
+        .ad-unit iframe {
+            border: 0;
+            padding: 0;
+            width: 70%;
+            height: 100px; /* IMPORTANT: explicit height */
+            display: block;
+            margin: auto;
+            overflow: hidden;
+        }
 
-    .hero p {
-      margin: 26px 0 0;
-      color: #888;
-      font-size: 18px;
-    }
+        /* -----------------------------
+           CENTRE MESSAGE
+        ----------------------------- */
 
-    footer {
-      padding: 40px 20px 60px;
-      text-align: center;
-      color: #3e3e3e;
-      font-size: 12px;
-      background: #050505;
-    }
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
 
-    @media (max-width: 1100px) {
-      .ad-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(155, 92, 255, 0.14),
+                    transparent 40%
+                ),
+                #050505;
+        }
 
-    @media (max-width: 700px) {
-      .ad-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 6px; }
-      .ad-box iframe { width: 90%; }
-      .ad-box { min-height: 100px; }
-    }
+        .hero-inner {
+            max-width: 1100px;
+        }
 
-    @media (max-width: 430px) {
-      .ad-wall { grid-template-columns: 1fr; }
-    }
-  </style>
+        h1 {
+            margin: 0;
+            font-size: clamp(42px, 9vw, 110px);
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+        }
+
+        .purple {
+            color: #9b5cff;
+
+            text-shadow:
+                0 0 10px rgba(155, 92, 255, 0.8),
+                0 0 35px rgba(155, 92, 255, 0.4);
+        }
+
+        .subtitle {
+            margin-top: 28px;
+            color: #777;
+            font-size: 18px;
+        }
+
+        /* -----------------------------
+           DESKTOP AD GRID
+        ----------------------------- */
+
+        .ad-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2px;
+            background: #111;
+        }
+
+        .ad-grid .ad-unit {
+            min-width: 0;
+        }
+
+        /* -----------------------------
+           FOOTER
+        ----------------------------- */
+
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            color: #333;
+            font-size: 12px;
+        }
+
+        /* -----------------------------
+           MOBILE
+        ----------------------------- */
+
+        @media (max-width: 700px) {
+            .ad-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ad-unit iframe {
+                width: 95%;
+                height: 100px;
+            }
+
+            .hero {
+                min-height: 60vh;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-  <div id="top-ads" class="ad-wall"></div>
+    <!--
+    ============================================================
+    TOP ADS
+    ============================================================
+    -->
 
-  <main class="hero">
-    <div>
-      <h1>YOU JUST GOT<br><span class="purple">BOTNETTED BOIIII</span></h1>
-      <p>welcome to notabotnet.site</p>
-    </div>
-  </main>
+    <div id="top-ads" class="ad-grid"></div>
 
-  <div id="bottom-ads" class="ad-wall"></div>
 
-  <footer>notabotnet.site</footer>
+    <!--
+    ============================================================
+    MAIN MESSAGE
+    ============================================================
+    -->
 
-  <script>
-    // Number of real A-ADS units rendered on the page.
-    const TOTAL_ADS = 100;
+    <main class="hero">
 
-    function createAd() {
-      const box = document.createElement('div');
-      box.className = 'ad-box';
+        <div class="hero-inner">
 
-      // BEGIN AADS AD UNIT 2451844
-      const frame = document.createElement('div');
-      frame.style.width = '100%';
-      frame.style.margin = 'auto';
-      frame.style.position = 'relative';
-      frame.style.zIndex = '99998';
+            <h1>
+                YOU JUST GOT<br>
+                <span class="purple">
+                    BOTNETTED BOIIII
+                </span>
+            </h1>
 
-      const iframe = document.createElement('iframe');
-      iframe.setAttribute('data-aa', '2451844');
-      iframe.src = '//acceptable.a-ads.com/2451844/?size=Adaptive';
-      iframe.style.border = '0';
-      iframe.style.padding = '0';
-      iframe.style.width = '70%';
-      iframe.style.height = 'auto';
-      iframe.style.overflow = 'hidden';
-      iframe.style.display = 'block';
-      iframe.style.margin = 'auto';
+            <div class="subtitle">
+                welcome to notabotnet.site
+            </div>
 
-      frame.appendChild(iframe);
-      box.appendChild(frame);
-      // END AADS AD UNIT 2451844
+        </div>
 
-      return box;
-    }
+    </main>
 
-    const top = document.getElementById('top-ads');
-    const bottom = document.getElementById('bottom-ads');
-    const topCount = Math.floor(TOTAL_ADS / 2);
 
-    for (let i = 0; i < TOTAL_ADS; i++) {
-      (i < topCount ? top : bottom).appendChild(createAd());
-    }
-  </script>
+    <!--
+    ============================================================
+    BOTTOM ADS
+    ============================================================
+    -->
+
+    <div id="bottom-ads" class="ad-grid"></div>
+
+
+    <footer>
+        notabotnet.site
+    </footer>
+
+
+    <script>
+        /*
+         * A-ADS configuration
+         */
+
+        const AADS_ID = "2451844";
+
+        /*
+         * Total number of units the page can eventually create.
+         */
+        const TOTAL_ADS = 100;
+
+        /*
+         * Only create this many initially.
+         *
+         * The rest are loaded when the visitor gets near
+         * the existing ads, which avoids firing 100 requests
+         * simultaneously.
+         */
+        const INITIAL_ADS = 8;
+
+        /*
+         * Number of additional units added per batch.
+         */
+        const BATCH_SIZE = 4;
+
+        let adsCreated = 0;
+
+
+        /*
+         * Create one A-ADS unit.
+         *
+         * Note:
+         * - Explicit HTTPS URL
+         * - Explicit iframe height
+         * - No duplicate id="frame"
+         */
+
+        function createAd() {
+
+            const container = document.createElement("div");
+
+            container.className = "ad-unit";
+
+            container.innerHTML = `
+                <!-- BEGIN AADS AD UNIT 2451844 -->
+
+                <div style="
+                    width: 100%;
+                    margin: auto;
+                    position: relative;
+                    z-index: 99998;
+                ">
+
+                    <iframe
+                        data-aa="${AADS_ID}"
+                        src="https://acceptable.a-ads.com/${AADS_ID}/?size=Adaptive"
+                        style="
+                            border:0;
+                            padding:0;
+                            width:70%;
+                            height:100px;
+                            overflow:hidden;
+                            display:block;
+                            margin:auto;
+                        ">
+                    </iframe>
+
+                </div>
+
+                <!-- END AADS AD UNIT 2451844 -->
+            `;
+
+            return container;
+        }
+
+
+        /*
+         * Add another batch of advertisements.
+         */
+
+        function addAds(count) {
+
+            const top = document.getElementById("top-ads");
+            const bottom = document.getElementById("bottom-ads");
+
+            for (let i = 0; i < count && adsCreated < TOTAL_ADS; i++) {
+
+                const ad = createAd();
+
+                /*
+                 * Alternate between top and bottom so the
+                 * central message remains visible.
+                 */
+
+                if (adsCreated % 2 === 0) {
+                    top.appendChild(ad);
+                } else {
+                    bottom.appendChild(ad);
+                }
+
+                adsCreated++;
+            }
+        }
+
+
+        /*
+         * Initial batch.
+         */
+
+        addAds(INITIAL_ADS);
+
+
+        /*
+         * Sentinel used for lazy loading.
+         */
+
+        const sentinel = document.createElement("div");
+
+        sentinel.style.height = "1px";
+
+        document.body.appendChild(sentinel);
+
+
+        /*
+         * Load more advertisements as the visitor approaches
+         * the end of the page.
+         */
+
+        const observer = new IntersectionObserver(
+            entries => {
+
+                if (!entries[0].isIntersecting) {
+                    return;
+                }
+
+                if (adsCreated >= TOTAL_ADS) {
+                    observer.disconnect();
+                    return;
+                }
+
+                addAds(BATCH_SIZE);
+
+            },
+            {
+                rootMargin: "1200px"
+            }
+        );
+
+
+        observer.observe(sentinel);
+
+    </script>
+
 </body>
 </html>
