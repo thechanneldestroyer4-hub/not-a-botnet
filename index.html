@@ -1,11 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="You just got botnetted boiiii. A harmless internet prank, plus a simple guide to what botnets actually are.">
-<meta name="robots" content="index,follow">
-<title>notabotnet.site — You just got botnetted boiiii</title>
+    <!-- PRIMARY SEO META TAGS -->
+    <title>Fake Hacker Screen Prank | Harmless Internet Pranks</title>
+    <meta name="description" content="Send your friends this fake hacker screen! notabotnet is a harmless internet prank and hack simulator joke. The best prank website links for friends.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://notabotnet.site/">
+
+    <!-- OPEN GRAPH & TWITTER CARDS -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://notabotnet.site/">
+    <meta property="og:title" content="Fake Hacker Screen Prank | Harmless Internet Pranks">
+    <meta property="og:description" content="Send this hack simulator joke to your friends. The ultimate computer screen prank and one of the best prank website links for friends!">
+    <meta property="og:image" content="https://notabotnet.site/og-image.jpg">
+    <meta property="og:site_name" content="notabotnet">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fake Hacker Screen Prank | Harmless Internet Pranks">
+    <meta name="twitter:description" content="Send this hack simulator joke to your friends. The ultimate computer screen prank and one of the best prank website links for friends!">
+    <meta name="twitter:image" content="https://notabotnet.site/og-image.jpg">
+
+    <!-- STRUCTURED DATA SCHEMA (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://notabotnet.site/#website",
+          "name": "NotABotnet",
+          "url": "https://notabotnet.site",
+          "description": "A harmless fake hacker screen and website prank link designed for computer jokes.",
+          "applicationCategory": "BrowserGame",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires HTML5 JavaScript support.",
+          "interactivityType": "active",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "publisher": {
+            "@id": "https://notabotnet.site/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://notabotnet.site/#organization",
+          "name": "notabotnet",
+          "url": "https://notabotnet.site/"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://notabotnet.site/#faqpage",
+          "url": "https://notabotnet.site/",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is notabotnet safe to use?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, notabotnet is completely safe. It is a harmless internet prank that does not download any malware, track your data, or actually hack your computer. It is purely a visual hack simulator joke."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How to use this hacker screen prank?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "To use this computer screen prank, simply copy the URL and send it to your friends. When they open the link, they will see a fake hacker screen telling them they just got botnetted."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are some good prank website links for friends?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "notabotnet.site is one of the best prank website links for friends. It offers a harmless internet prank that mimics a real hack simulator joke without causing any actual damage."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- PERFORMANCE & RESOURCE HINTS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://a-ads.com" crossorigin>
+    <link rel="dns-prefetch" href="https://a-ads.com">
+    <link rel="preconnect" href="https://acceptable.a-ads.com">
+    <link rel="dns-prefetch" href="https://acceptable.a-ads.com">
+    <meta name="theme-color" content="#070707">
+
 <style>
 :root{
   --bg:#070707; --panel:#101010; --panel-2:#151515;
@@ -18,18 +104,21 @@ body{margin:0;background:var(--bg);color:var(--text);
   font-family:Arial,Helvetica,sans-serif;line-height:1.65}
 a{color:#c6a7ff}
 
-/* ===== ADS ===== */
+/* ===== ADS & STRICT LAYOUT BUDGETING ===== */
 .ad-label{font-size:10px;color:var(--ad-label);text-transform:uppercase;
   letter-spacing:.22em;text-align:center;margin:0 0 6px;font-family:monospace}
 .ad-box{background:var(--ad-bg);border:1px solid #1a1a1a;border-radius:10px;
   padding:12px 10px 10px;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;margin:0 auto;position:relative}
+  justify-content:center;margin:0 auto;position:relative;
+  /* Layout Budgeting to prevent CLS */
+  min-height:90px; 
+}
 .ad-box iframe{border:0;padding:0;margin:0;display:block;
   overflow:hidden;background:transparent;max-width:100%}
 .ad-wrap-full{width:100%;padding:14px 0;border-top:1px solid #151515;
   border-bottom:1px solid #151515;background:#060606;display:flex;
   justify-content:center}
-.ad-wrap-full .ad-box{background:transparent;border:0}
+.ad-wrap-full .ad-box{background:transparent;border:0;min-height:90px}
 .ad-inline{margin:28px auto;max-width:728px}
 .ad-sidebar-slot{display:flex;flex-direction:column;gap:24px}
 .ad-floating{position:fixed;bottom:14px;right:14px;z-index:9999;
@@ -112,6 +201,18 @@ footer{padding:45px 20px 70px;text-align:center;border-top:1px solid var(--borde
   .hero{min-height:50vh;padding:50px 18px}
   .ad-floating{right:8px;bottom:8px;transform:scale(.85);transform-origin:bottom right}
 }
+
+/* Phase 2: SEO Context Layer */
+#seo-context-layer {
+  max-width: 800px; 
+  margin: 40px auto; 
+  padding: 20px; 
+  font-family: sans-serif; 
+  color: #c5c5c5;
+}
+#seo-context-layer h2, #seo-context-layer h3 {
+  color: #f5f5f5;
+}
 </style>
 </head>
 <body>
@@ -131,13 +232,8 @@ footer{padding:45px 20px 70px;text-align:center;border-top:1px solid var(--borde
   <a href="#/contact" data-route="contact">Contact</a>
 </nav>
 
-<!-- FLOATING AD -->
 <div class="ad-floating" id="floating-ad-slot"></div>
-
-<!-- AD COUNTER -->
 <div class="ad-counter" id="ad-counter">ADS LOADED: 0</div>
-
-<!-- INTERSTITIAL -->
 <div class="ad-interstitial" id="interstitial" style="display:none"></div>
 
 <div class="layout">
@@ -154,7 +250,7 @@ footer{padding:45px 20px 70px;text-align:center;border-top:1px solid var(--borde
 
 <script>
 // ============================================================
-// PROCEDURAL AD GENERATION ENGINE
+// PROCEDURAL AD GENERATION ENGINE (CLS OPTIMIZED)
 // ============================================================
 const AD_ID = '2451844';
 const AD_BASE = 'https://acceptable.a-ads.com/' + AD_ID + '/';
@@ -198,8 +294,12 @@ function spawnAdBox(target, sizeOpts){
   const key = 'b' + adCount;
   const box = document.createElement('div');
   box.className = 'ad-box';
+  // STRICT LAYOUT BUDGETING
+  box.style.minWidth = size.w + 'px';
+  box.style.minHeight = size.h + 'px';
   box.style.maxWidth = (size.w + 20) + 'px';
   box.style.width = '100%';
+  
   const lbl = document.createElement('div');
   lbl.className = 'ad-label';
   lbl.textContent = 'Advertisement';
@@ -219,8 +319,12 @@ function spawnFullWidthAd(target, sizeLabel){
   inner.style.background = 'transparent';
   inner.style.border = '0';
   inner.style.padding = '0';
+  // STRICT LAYOUT BUDGETING
+  inner.style.minWidth = size.w + 'px';
+  inner.style.minHeight = size.h + 'px';
   inner.style.maxWidth = (size.w + 20) + 'px';
   inner.style.width = '100%';
+  
   const lbl = document.createElement('div');
   lbl.className = 'ad-label';
   lbl.textContent = 'Advertisement';
@@ -240,7 +344,11 @@ function spawnInlineAd(target, sizeLabel){
   wrap.className = 'ad-inline';
   const box = document.createElement('div');
   box.className = 'ad-box';
+  // STRICT LAYOUT BUDGETING
+  box.style.minWidth = size.w + 'px';
+  box.style.minHeight = size.h + 'px';
   box.style.maxWidth = (size.w + 20) + 'px';
+  
   const lbl = document.createElement('div');
   lbl.className = 'ad-label';
   lbl.textContent = 'Advertisement';
@@ -287,6 +395,8 @@ function spawnInterstitial(){
   box.className = 'ad-box';
   box.style.background = 'transparent';
   box.style.border = '0';
+  box.style.minHeight = '280px';
+  box.style.minWidth = '336px';
   box.appendChild(makeAdIframe(AD_SIZES.find(s=>s.label==='336x280'), 'is' + adCount));
   const skip = document.createElement('button');
   skip.className = 'skip-btn disabled';
@@ -325,14 +435,12 @@ function fillSidebars(){
 }
 
 function fillAdZones(){
-  // full-width top
   const top = document.getElementById('top-ad-slot');
   if(top && !top.dataset.filled){
     top.innerHTML = '';
     spawnFullWidthAd(top, '728x90');
     top.dataset.filled = '1';
   }
-  // in-content zones
   document.querySelectorAll('[data-ad-zone]').forEach(zone => {
     if(zone.dataset.filled) return;
     zone.innerHTML = '';
@@ -344,7 +452,7 @@ function fillAdZones(){
 }
 
 // ============================================================
-// PAGE CONTENT
+// PAGE CONTENT (Including Phase 2: SEO Context Layer)
 // ============================================================
 const PAGES = {
 home: () => `
@@ -371,9 +479,18 @@ home: () => `
       <article class="card"><h3>Human-readable</h3><p>The site is designed to be understandable rather than pretending to be a security scanner or an infection warning.</p></article>
     </div>
     <div data-ad-zone="after-grid"></div>
+    
+    <!-- PHASE 2: SEO CONTEXT LAYER -->
+    <section id="seo-context-layer">
+      <h2>How to Use This Fake Hacker Screen Prank</h2>
+      <p>Looking for a <strong>harmless internet prank</strong> to play on your friends or coworkers? This <strong>hack simulator joke</strong> creates a convincing, safe computer screen prank terminal right in your web browser. It displays automated, complex-looking code sequences that make it appear as though an active diagnostic overlay or command script is executing live.</p>
+      
+      <h3>Is NotABotnet Safe?</h3>
+      <p>Yes. This page contains absolutely no malicious software, tracking trojans, or real botnet scripts. It is a pure front-end visual tool engineered for harmless tech humor. To run the <strong>fake hacker screen</strong>, simply copy the URL, open it in full-screen mode (F11) on a target device, and use it as a lighthearted practical joke.</p>
+    </section>
+
     <h3>What you'll find here</h3>
     <p>Beyond the joke, this site is structured into several pages. Each one explains a small piece of internet security in plain language, and each one is decorated with advertisements because that's apparently how the internet works now.</p>
-    <p>You can navigate using the menu at the top. Pages include a breakdown of the prank, an explainer on what botnets actually are, a protection checklist, a blog of loosely related thoughts, a FAQ, and an advertising disclosure page that exists mostly because it's good practice.</p>
     <div data-ad-zone="after-text-1"></div>
     <p>None of these pages will ask you to download anything, pay anything, or call anyone. If any advertisement does, that's the ad network's fault and not ours — but you should still ignore it.</p>
     <div data-ad-zone="after-text-2"></div>
@@ -681,12 +798,10 @@ function router(){
   const sub = hash.split('/')[1];
   const app = document.getElementById('app');
 
-  // active nav state
   document.querySelectorAll('nav a').forEach(a=>{
     a.classList.toggle('active', a.dataset.route === route);
   });
 
-  // render page
   if(route === 'blog' && sub && BLOG_POSTS[sub]){
     app.innerHTML = BLOG_POSTS[sub];
   } else if(PAGES[route]){
@@ -695,18 +810,14 @@ function router(){
     app.innerHTML = PAGES.home();
   }
 
-  // reset ad zones
   document.querySelectorAll('[data-ad-zone]').forEach(z=>delete z.dataset.filled);
-  // fill ads in new content
   fillAdZones();
   fillSidebars();
 
-  // blog post click handlers
   document.querySelectorAll('.blog-item').forEach(item=>{
     item.onclick = () => { location.hash = '#/blog/' + item.dataset.blog; };
   });
 
-  // load-more-ads button
   const lm = document.getElementById('load-more-ads-btn');
   if(lm){
     lm.onclick = () => {
@@ -722,7 +833,6 @@ function router(){
     };
   }
 
-  // interstitial between route changes (but not on first load)
   if(lastRoute && lastRoute !== route && !interstitialShownFor.has(route)){
     interstitialShownFor.add(route);
     spawnInterstitial();
@@ -740,7 +850,6 @@ window.addEventListener('load', () => {
   if(!location.hash) location.hash = '#/home';
   router();
   spawnFloatingAd();
-  // periodic floating ad refresh every 60s if dismissed
   setInterval(()=>{
     const f = document.getElementById('floating-ad-slot');
     if(f && f.style.display === 'none') spawnFloatingAd();
