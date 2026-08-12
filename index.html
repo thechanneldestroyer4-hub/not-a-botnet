@@ -1,364 +1,762 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="You just got botnetted boiiii. A harmless internet prank, plus a simple guide to what botnets actually are.">
-    <meta name="robots" content="index,follow">
-    <title>notabotnet.site — You just got botnetted boiiii</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="You just got botnetted boiiii. A harmless internet prank, plus a simple guide to what botnets actually are.">
+<meta name="robots" content="index,follow">
+<title>notabotnet.site — You just got botnetted boiiii</title>
+<style>
+:root{
+  --bg:#070707; --panel:#101010; --panel-2:#151515;
+  --text:#f5f5f5; --muted:#9a9a9a; --purple:#9b5cff;
+  --border:#242424; --ad-bg:#0b0b0b; --ad-label:#4a4a4a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+a{color:#c6a7ff}
 
-    <style>
-        :root {
-            --bg: #070707;
-            --panel: #101010;
-            --panel-2: #151515;
-            --text: #f5f5f5;
-            --muted: #9a9a9a;
-            --purple: #9b5cff;
-            --border: #242424;
-        }
+/* ===== ADS ===== */
+.ad-label{font-size:10px;color:var(--ad-label);text-transform:uppercase;
+  letter-spacing:.22em;text-align:center;margin:0 0 6px;font-family:monospace}
+.ad-box{background:var(--ad-bg);border:1px solid #1a1a1a;border-radius:10px;
+  padding:12px 10px 10px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;margin:0 auto;position:relative}
+.ad-box iframe{border:0;padding:0;margin:0;display:block;
+  overflow:hidden;background:transparent;max-width:100%}
+.ad-wrap-full{width:100%;padding:14px 0;border-top:1px solid #151515;
+  border-bottom:1px solid #151515;background:#060606;display:flex;
+  justify-content:center}
+.ad-wrap-full .ad-box{background:transparent;border:0}
+.ad-inline{margin:28px auto;max-width:728px}
+.ad-sidebar-slot{display:flex;flex-direction:column;gap:24px}
+.ad-floating{position:fixed;bottom:14px;right:14px;z-index:9999;
+  background:#0a0a0a;border:1px solid #2a2a2a;border-radius:10px;
+  padding:10px;box-shadow:0 8px 30px rgba(0,0,0,.6)}
+.ad-floating .close-btn{position:absolute;top:-9px;right:-9px;
+  background:#1a1a1a;color:#fff;border:1px solid #333;width:22px;height:22px;
+  border-radius:50%;cursor:pointer;font-size:12px;display:flex;
+  align-items:center;justify-content:center;line-height:1}
+.ad-interstitial{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.94);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.ad-interstitial .skip-btn{margin-top:18px;padding:9px 24px;background:var(--panel);
+  border:1px solid var(--border);border-radius:999px;color:#fff;cursor:pointer;font-family:monospace}
+.ad-interstitial .skip-btn.disabled{opacity:.4;cursor:not-allowed}
+.ad-counter{position:fixed;bottom:14px;left:14px;background:#0a0a0a;
+  border:1px solid #2a2a2a;border-radius:999px;padding:6px 14px;font-size:11px;
+  color:#888;font-family:monospace;z-index:9000;pointer-events:none}
+.load-more-ads{display:block;margin:30px auto;padding:14px 28px;background:transparent;
+  border:1px dashed var(--purple);color:var(--purple);border-radius:12px;cursor:pointer;
+  font-size:14px;font-family:monospace}
+.load-more-ads:hover{background:rgba(155,92,255,.08)}
 
-        * { box-sizing: border-box; }
+/* ===== LAYOUT ===== */
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;
+  flex-wrap:wrap;gap:18px;padding:14px 20px;background:rgba(7,7,7,.94);
+  border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+nav a{text-decoration:none;color:#cfcfcf;font-size:14px;cursor:pointer}
+nav a:hover,nav a.active{color:#fff}
+.layout{display:grid;grid-template-columns:180px minmax(0,1fr) 180px;
+  gap:24px;max-width:1400px;margin:0 auto;padding:30px 20px}
+.layout>.sidebar{display:flex;flex-direction:column;gap:24px}
+.layout>.sidebar .ad-box{max-width:180px}
+.layout>main{min-width:0}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.layout>.sidebar{display:none}}
 
-        html { scroll-behavior: smooth; }
+.hero{min-height:58vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:70px 20px;
+  background:radial-gradient(circle at 50% 45%,rgba(155,92,255,.16),transparent 36%),var(--bg)}
+.hero-inner{max-width:1050px}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;
+  color:#737373;margin-bottom:18px}
+h1{margin:0;font-size:clamp(42px,8vw,96px);line-height:.92;
+  letter-spacing:-.055em;text-transform:uppercase}
+.purple{color:var(--purple);text-shadow:0 0 30px rgba(155,92,255,.35)}
+.hero p{max-width:760px;margin:28px auto 0;color:var(--muted);font-size:18px}
+.buttons{margin-top:28px;display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.button{display:inline-block;padding:11px 18px;border:1px solid var(--border);
+  border-radius:999px;text-decoration:none;color:#fff;background:var(--panel);
+  cursor:pointer;font-size:14px}
+.button:hover{background:var(--panel-2)}
+.button.primary{background:var(--purple);border-color:var(--purple)}
 
-        body {
-            margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.65;
-        }
-
-        a { color: #c6a7ff; }
-
-        .ad-wrap {
-            width: 100%;
-            min-height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 0;
-            background: #080808;
-            border-bottom: 1px solid #151515;
-        }
-
-        .ad-wrap iframe {
-            border: 0;
-            padding: 0;
-            width: 70%;
-            height: 100px;
-            overflow: hidden;
-            display: block;
-            margin: auto;
-        }
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 18px;
-            padding: 14px 20px;
-            background: rgba(7, 7, 7, 0.94);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #cfcfcf;
-            font-size: 14px;
-        }
-
-        nav a:hover { color: white; }
-
-        .hero {
-            min-height: 68vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-            background:
-                radial-gradient(circle at 50% 45%, rgba(155,92,255,.16), transparent 36%),
-                var(--bg);
-        }
-
-        .hero-inner { max-width: 1050px; }
-
-        .eyebrow {
-            text-transform: uppercase;
-            letter-spacing: .16em;
-            font-size: 12px;
-            color: #737373;
-            margin-bottom: 18px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: clamp(42px, 8vw, 96px);
-            line-height: .92;
-            letter-spacing: -.055em;
-            text-transform: uppercase;
-        }
-
-        .purple {
-            color: var(--purple);
-            text-shadow: 0 0 30px rgba(155,92,255,.35);
-        }
-
-        .hero p {
-            max-width: 760px;
-            margin: 28px auto 0;
-            color: var(--muted);
-            font-size: 18px;
-        }
-
-        .buttons {
-            margin-top: 28px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 11px 16px;
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            text-decoration: none;
-            color: white;
-            background: var(--panel);
-        }
-
-        .button:hover { background: var(--panel-2); }
-
-        main.content {
-            width: min(1050px, calc(100% - 40px));
-            margin: 0 auto;
-            padding: 70px 0;
-        }
-
-        section {
-            scroll-margin-top: 90px;
-            margin-bottom: 70px;
-        }
-
-        h2 {
-            margin: 0 0 14px;
-            font-size: clamp(28px, 4vw, 44px);
-            line-height: 1.05;
-        }
-
-        h3 {
-            margin: 28px 0 8px;
-            font-size: 20px;
-        }
-
-        .lead {
-            color: #c5c5c5;
-            font-size: 18px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-            margin-top: 24px;
-        }
-
-        .card {
-            padding: 24px;
-            background: linear-gradient(180deg, #111, #0d0d0d);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-        }
-
-        .card p { margin-bottom: 0; color: #aaa; }
-
-        .notice {
-            padding: 18px 20px;
-            border: 1px solid #3a2c4f;
-            background: #120d18;
-            border-radius: 14px;
-            color: #cfc2dd;
-        }
-
-        details {
-            padding: 18px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        summary {
-            cursor: pointer;
-            font-weight: 700;
-        }
-
-        footer {
-            padding: 45px 20px 70px;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            color: #646464;
-        }
-
-        .tiny { font-size: 12px; }
-
-        @media (max-width: 720px) {
-            .ad-wrap iframe { width: 95%; }
-            .grid { grid-template-columns: 1fr; }
-            .hero { min-height: 62vh; padding: 65px 18px; }
-            main.content { width: min(100% - 28px, 1050px); }
-        }
-    </style>
+section{margin-bottom:50px;scroll-margin-top:90px}
+h2{margin:0 0 14px;font-size:clamp(28px,4vw,44px);line-height:1.05}
+h3{margin:24px 0 8px;font-size:20px}
+.lead{color:#c5c5c5;font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+.card{padding:24px;background:linear-gradient(180deg,#111,#0d0d0d);
+  border:1px solid var(--border);border-radius:18px}
+.card p{margin-bottom:0;color:#aaa}
+.card h3{margin-top:0}
+.notice{padding:18px 20px;border:1px solid #3a2c4f;background:#120d18;
+  border-radius:14px;color:#cfc2dd}
+details{padding:18px 0;border-bottom:1px solid var(--border)}
+summary{cursor:pointer;font-weight:700}
+.blog-list{display:flex;flex-direction:column;gap:18px}
+.blog-item{padding:22px;background:linear-gradient(180deg,#111,#0d0d0d);
+  border:1px solid var(--border);border-radius:14px;cursor:pointer;transition:border-color .15s}
+.blog-item:hover{border-color:var(--purple)}
+.blog-item .meta{font-size:12px;color:#777;margin-top:8px}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:12px 0 12px 32px;position:relative;border-bottom:1px solid #1a1a1a}
+.checklist li:before{content:"✓";position:absolute;left:0;top:12px;color:var(--purple);font-weight:bold}
+footer{padding:45px 20px 70px;text-align:center;border-top:1px solid var(--border);color:#646464}
+.tiny{font-size:12px}
+.tag{display:inline-block;padding:3px 10px;border:1px solid var(--border);
+  border-radius:999px;font-size:11px;color:#888;margin-right:6px}
+@media(max-width:720px){
+  .grid{grid-template-columns:1fr}
+  .hero{min-height:50vh;padding:50px 18px}
+  .ad-floating{right:8px;bottom:8px;transform:scale(.85);transform-origin:bottom right}
+}
+</style>
 </head>
 <body>
 
-    <!-- BEGIN AADS AD UNIT 2451844 -->
-    <div class="ad-wrap">
-        <div style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-            <iframe data-aa='2451844'
-                    src='https://acceptable.a-ads.com/2451844/?size=Adaptive'
-                    style='border:0; padding:0; width:70%; height:100px; overflow:hidden;display:block;margin:auto'></iframe>
-        </div>
+<!-- TOP BANNER AD -->
+<div class="ad-wrap-full" id="top-ad-slot"></div>
+
+<nav aria-label="Main navigation">
+  <a data-route="home" class="active">Home</a>
+  <a data-route="about">About</a>
+  <a data-route="prank">The Prank</a>
+  <a data-route="botnets">Botnets 101</a>
+  <a data-route="protection">Protection</a>
+  <a data-route="blog">Blog</a>
+  <a data-route="faq">FAQ</a>
+  <a data-route="advertise">Advertise</a>
+  <a data-route="contact">Contact</a>
+</nav>
+
+<!-- FLOATING AD -->
+<div class="ad-floating" id="floating-ad-slot"></div>
+
+<!-- AD COUNTER -->
+<div class="ad-counter" id="ad-counter">ADS LOADED: 0</div>
+
+<!-- INTERSTITIAL -->
+<div class="ad-interstitial" id="interstitial" style="display:none"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="left-sidebar-ads"></aside>
+  <main id="app"></main>
+  <aside class="sidebar" id="right-sidebar-ads"></aside>
+</div>
+
+<footer>
+  <div>notabotnet.site</div>
+  <div class="tiny">A harmless joke website. No actual botnet included. Plenty of ads though.</div>
+  <div class="tiny" style="margin-top:8px">© 2025 notabotnet.site — Ad-supported internet humor</div>
+</footer>
+
+<script>
+// ============================================================
+// PROCEDURAL AD GENERATION ENGINE
+// ============================================================
+const AD_ID = '2451844';
+const AD_BASE = 'https://acceptable.a-ads.com/' + AD_ID + '/';
+
+const AD_SIZES = [
+  {w:728,h:90,label:'728x90'},
+  {w:468,h:60,label:'468x60'},
+  {w:300,h:250,label:'300x250'},
+  {w:160,h:600,label:'160x600'},
+  {w:320,h:50,label:'320x50'},
+  {w:970,h:90,label:'970x90'},
+  {w:250,h:250,label:'250x250'},
+  {w:200,h:200,label:'200x200'},
+  {w:336,h:280,label:'336x280'},
+  {w:120,h:600,label:'120x600'},
+  {w:180,h:150,label:'180x150'},
+  {w:300,h:600,label:'300x600'}
+];
+
+let adCount = 0;
+function bumpCounter(){
+  adCount++;
+  const el = document.getElementById('ad-counter');
+  if(el) el.textContent = 'ADS LOADED: ' + adCount;
+}
+
+function makeAdIframe(size, key){
+  const src = AD_BASE + '?size=' + size.label + (key ? '&key=' + key : '');
+  const ifr = document.createElement('iframe');
+  ifr.setAttribute('data-aa', AD_ID);
+  ifr.src = src;
+  ifr.style.cssText = 'border:0;padding:0;margin:0;display:block;overflow:hidden;background:transparent;width:'+size.w+'px;height:'+size.h+'px;max-width:100%';
+  ifr.setAttribute('scrolling','no');
+  ifr.setAttribute('loading','lazy');
+  ifr.title = 'Advertisement';
+  return ifr;
+}
+
+function spawnAdBox(target, sizeOpts){
+  const size = sizeOpts || AD_SIZES[Math.floor(Math.random()*AD_SIZES.length)];
+  const key = 'b' + adCount;
+  const box = document.createElement('div');
+  box.className = 'ad-box';
+  box.style.maxWidth = (size.w + 20) + 'px';
+  box.style.width = '100%';
+  const lbl = document.createElement('div');
+  lbl.className = 'ad-label';
+  lbl.textContent = 'Advertisement';
+  box.appendChild(lbl);
+  box.appendChild(makeAdIframe(size, key));
+  target.appendChild(box);
+  bumpCounter();
+  return box;
+}
+
+function spawnFullWidthAd(target, sizeLabel){
+  const size = AD_SIZES.find(s=>s.label===sizeLabel) || AD_SIZES[0];
+  const wrap = document.createElement('div');
+  wrap.className = 'ad-wrap-full';
+  const inner = document.createElement('div');
+  inner.className = 'ad-box';
+  inner.style.background = 'transparent';
+  inner.style.border = '0';
+  inner.style.padding = '0';
+  inner.style.maxWidth = (size.w + 20) + 'px';
+  inner.style.width = '100%';
+  const lbl = document.createElement('div');
+  lbl.className = 'ad-label';
+  lbl.textContent = 'Advertisement';
+  inner.appendChild(lbl);
+  inner.appendChild(makeAdIframe(size, 'fw' + adCount));
+  wrap.appendChild(inner);
+  target.appendChild(wrap);
+  bumpCounter();
+  return wrap;
+}
+
+function spawnInlineAd(target, sizeLabel){
+  const size = sizeLabel
+    ? AD_SIZES.find(s=>s.label===sizeLabel)
+    : AD_SIZES[Math.floor(Math.random()*6)];
+  const wrap = document.createElement('div');
+  wrap.className = 'ad-inline';
+  const box = document.createElement('div');
+  box.className = 'ad-box';
+  box.style.maxWidth = (size.w + 20) + 'px';
+  const lbl = document.createElement('div');
+  lbl.className = 'ad-label';
+  lbl.textContent = 'Advertisement';
+  box.appendChild(lbl);
+  box.appendChild(makeAdIframe(size, 'in' + adCount));
+  wrap.appendChild(box);
+  target.appendChild(wrap);
+  bumpCounter();
+  return wrap;
+}
+
+function spawnFloatingAd(){
+  const slot = document.getElementById('floating-ad-slot');
+  if(!slot) return;
+  slot.innerHTML = '';
+  const close = document.createElement('div');
+  close.className = 'close-btn';
+  close.textContent = '×';
+  close.onclick = () => {
+    slot.style.display = 'none';
+    setTimeout(spawnFloatingAd, 25000);
+  };
+  const lbl = document.createElement('div');
+  lbl.className = 'ad-label';
+  lbl.textContent = 'Advertisement';
+  const ifr = makeAdIframe(AD_SIZES.find(s=>s.label==='300x250'), 'fl' + adCount);
+  slot.appendChild(close);
+  slot.appendChild(lbl);
+  slot.appendChild(ifr);
+  slot.style.display = 'block';
+  bumpCounter();
+}
+
+function spawnInterstitial(){
+  const ov = document.getElementById('interstitial');
+  if(!ov) return;
+  ov.innerHTML = '';
+  ov.style.display = 'flex';
+  const lbl = document.createElement('div');
+  lbl.className = 'ad-label';
+  lbl.style.fontSize = '12px';
+  lbl.textContent = 'Sponsored Content';
+  const box = document.createElement('div');
+  box.className = 'ad-box';
+  box.style.background = 'transparent';
+  box.style.border = '0';
+  box.appendChild(makeAdIframe(AD_SIZES.find(s=>s.label==='336x280'), 'is' + adCount));
+  const skip = document.createElement('button');
+  skip.className = 'skip-btn disabled';
+  skip.textContent = 'Skip in 5…';
+  let n = 5;
+  const iv = setInterval(()=>{
+    n--;
+    if(n<=0){
+      clearInterval(iv);
+      skip.textContent = 'Skip Ad →';
+      skip.classList.remove('disabled');
+      skip.onclick = () => { ov.style.display = 'none'; };
+    } else {
+      skip.textContent = 'Skip in ' + n + '…';
+    }
+  }, 1000);
+  ov.appendChild(lbl);
+  ov.appendChild(box);
+  ov.appendChild(skip);
+  bumpCounter();
+}
+
+function fillSidebars(){
+  const left = document.getElementById('left-sidebar-ads');
+  const right = document.getElementById('right-sidebar-ads');
+  if(left){
+    left.innerHTML = '';
+    spawnAdBox(left, AD_SIZES.find(s=>s.label==='160x600'));
+    spawnAdBox(left, AD_SIZES.find(s=>s.label==='160x600'));
+  }
+  if(right){
+    right.innerHTML = '';
+    spawnAdBox(right, AD_SIZES.find(s=>s.label==='160x600'));
+    spawnAdBox(right, AD_SIZES.find(s=>s.label==='120x600'));
+  }
+}
+
+function fillAdZones(){
+  // full-width top
+  const top = document.getElementById('top-ad-slot');
+  if(top && !top.dataset.filled){
+    top.innerHTML = '';
+    spawnFullWidthAd(top, '728x90');
+    top.dataset.filled = '1';
+  }
+  // in-content zones
+  document.querySelectorAll('[data-ad-zone]').forEach(zone => {
+    if(zone.dataset.filled) return;
+    zone.innerHTML = '';
+    const sizes = ['728x90','300x250','468x60','336x280'];
+    const pick = sizes[Math.floor(Math.random()*sizes.length)];
+    spawnInlineAd(zone, pick);
+    zone.dataset.filled = '1';
+  });
+}
+
+// ============================================================
+// PAGE CONTENT
+// ============================================================
+const PAGES = {
+home: () => `
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">notabotnet.site</div>
+      <h1>YOU JUST GOT<br><span class="purple">BOTNETTED BOIIII</span></h1>
+      <p>Relax. This is a harmless joke website, not an actual botnet. The dramatic headline is the whole gag. The ads, however, are very real.</p>
+      <div class="buttons">
+        <a class="button primary" data-route="about">What is this?</a>
+        <a class="button" data-route="botnets">What is a botnet?</a>
+        <a class="button" data-route="blog">Read the blog</a>
+      </div>
     </div>
-    <!-- END AADS AD UNIT 2451844 -->
-
-    <nav aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#prank">The prank</a>
-        <a href="#botnets">Botnets</a>
-        <a href="#faq">FAQ</a>
-        <a href="#ads">Advertising</a>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-inner">
-            <div class="eyebrow">notabotnet.site</div>
-            <h1>YOU JUST GOT<br><span class="purple">BOTNETTED BOIIII</span></h1>
-            <p>
-                Relax. This is a harmless joke website, not an actual botnet.
-                The dramatic headline is the whole gag.
-            </p>
-            <div class="buttons">
-                <a class="button" href="#about">What is this?</a>
-                <a class="button" href="#botnets">What is a botnet?</a>
-            </div>
-        </div>
-    </header>
-
-    <main class="content">
-        <section id="about">
-            <h2>What is notabotnet.site?</h2>
-            <p class="lead">
-                It is a tiny entertainment site built around one deliberately over-the-top internet prank.
-                There is no software download, no background process, and no attempt to control your computer.
-            </p>
-            <div class="grid">
-                <article class="card">
-                    <h3>Just a joke</h3>
-                    <p>The phrase “you just got botnetted boiiii” is intentionally dramatic. Visiting this page does not install a botnet.</p>
-                </article>
-                <article class="card">
-                    <h3>Actually useful</h3>
-                    <p>The rest of the site explains what a botnet really is, why botnets matter, and a few simple ways to protect yourself online.</p>
-                </article>
-                <article class="card">
-                    <h3>No mystery downloads</h3>
-                    <p>This page is ordinary HTML, CSS, and browser-side JavaScript. There is no executable download hidden behind the joke.</p>
-                </article>
-                <article class="card">
-                    <h3>Human-readable</h3>
-                    <p>The site is designed to be understandable rather than pretending to be a security scanner or an infection warning.</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="prank">
-            <h2>The prank explained</h2>
-            <p>
-                The joke works because “botnet” sounds alarmingly serious. In reality, the page is simply playing
-                with that idea. Once the headline has done its job, the site tells you exactly what happened instead
-                of trying to scare you into clicking something.
-            </p>
-            <div class="notice">
-                <strong>Important:</strong> If a website claims your computer is infected and immediately demands
-                payment, a download, or a phone call, treat that as a major warning sign. Legitimate security tools
-                should provide enough information for you to verify the claim independently.
-            </div>
-        </section>
-
-        <section id="botnets">
-            <h2>So what actually is a botnet?</h2>
-            <p>
-                A botnet is a collection of internet-connected devices that have been compromised and are being
-                controlled or coordinated by someone else. Botnets can be used for things such as distributed denial
-                of service attacks, spam, credential attacks, or other abusive activity.
-            </p>
-            <h3>How devices end up in one</h3>
-            <p>
-                Common routes include malicious software, compromised accounts, vulnerable services, and social
-                engineering. Keeping software updated, using unique passwords, enabling multi-factor authentication,
-                and avoiding untrusted downloads all reduce risk.
-            </p>
-            <h3>Why this site isn't one</h3>
-            <p>
-                This page doesn't attempt to persist on your machine, communicate with other devices, or execute
-                a hidden payload. The “botnet” exists only in the joke text.
-            </p>
-        </section>
-
-        <section id="faq">
-            <h2>Frequently asked questions</h2>
-            <details>
-                <summary>Did I actually get hacked?</summary>
-                <p>No. The headline is a joke. Simply opening this page does not mean your machine joined a botnet.</p>
-            </details>
-            <details>
-                <summary>Why is this website full of advertising?</summary>
-                <p>The site is experimenting with advertising as a way to support a small independent website. Ads are disclosed here rather than disguised as security warnings or download buttons.</p>
-            </details>
-            <details>
-                <summary>Can I trust a website that says my PC is infected?</summary>
-                <p>Don't trust a scary message on its own. Verify claims through a security product or other independent source, and don't install software or make payments because a random page tells you to.</p>
-            </details>
-            <details>
-                <summary>Who made this?</summary>
-                <p>This is an independent novelty website. The point is the joke, followed by a small amount of genuinely useful security information.</p>
-            </details>
-        </section>
-
-        <section id="ads">
-            <h2>Advertising disclosure</h2>
-            <p>
-                notabotnet.site may display third-party advertisements. Advertising helps support the site and is
-                kept separate from the site's editorial content. Advertisement content is supplied by the advertising
-                network, not written or endorsed by this site.
-            </p>
-            <p class="tiny">
-                We do not ask visitors to click advertisements, and advertising is not presented as a security alert,
-                download prompt, or required step to use the website.
-            </p>
-        </section>
-    </main>
-
-    <!-- BEGIN AADS AD UNIT 2451844 -->
-    <div class="ad-wrap">
-        <div style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-            <iframe data-aa='2451844'
-                    src='https://acceptable.a-ads.com/2451844/?size=Adaptive'
-                    style='border:0; padding:0; width:70%; height:100px; overflow:hidden;display:block;margin:auto'></iframe>
-        </div>
+  </header>
+  <div data-ad-zone="after-hero"></div>
+  <section>
+    <h2>Welcome to notabotnet.site</h2>
+    <p class="lead">A tiny entertainment site built around one deliberately over-the-top internet prank. There is no software download, no background process, and no attempt to control your computer. There are, however, an unreasonable number of advertisements.</p>
+    <div class="grid">
+      <article class="card"><h3>Just a joke</h3><p>The phrase "you just got botnetted boiiii" is intentionally dramatic. Visiting this page does not install a botnet.</p></article>
+      <article class="card"><h3>Actually useful</h3><p>The rest of the site explains what a botnet really is, why botnets matter, and a few simple ways to protect yourself online.</p></article>
+      <article class="card"><h3>No mystery downloads</h3><p>This page is ordinary HTML, CSS, and browser-side JavaScript. There is no executable download hidden behind the joke.</p></article>
+      <article class="card"><h3>Human-readable</h3><p>The site is designed to be understandable rather than pretending to be a security scanner or an infection warning.</p></article>
     </div>
-    <!-- END AADS AD UNIT 2451844 -->
+    <div data-ad-zone="after-grid"></div>
+    <h3>What you'll find here</h3>
+    <p>Beyond the joke, this site is structured into several pages. Each one explains a small piece of internet security in plain language, and each one is decorated with advertisements because that's apparently how the internet works now.</p>
+    <p>You can navigate using the menu at the top. Pages include a breakdown of the prank, an explainer on what botnets actually are, a protection checklist, a blog of loosely related thoughts, a FAQ, and an advertising disclosure page that exists mostly because it's good practice.</p>
+    <div data-ad-zone="after-text-1"></div>
+    <p>None of these pages will ask you to download anything, pay anything, or call anyone. If any advertisement does, that's the ad network's fault and not ours — but you should still ignore it.</p>
+    <div data-ad-zone="after-text-2"></div>
+    <h3>A note on the ads</h3>
+    <p>Every advertisement on this site is a real ad unit served through a third-party network. We don't write the ad content, we don't pick the advertisers, and we definitely don't endorse whatever they're selling. The ads exist because hosting costs money and this seemed like the least annoying way to cover it. That plan may have backfired.</p>
+  </section>
+  <button class="load-more-ads" id="load-more-ads-btn">[ LOAD MORE ADS ]</button>
+  <div id="extra-ads-zone"></div>
+`,
+about: () => `
+  <section>
+    <h2>About notabotnet.site</h2>
+    <p class="lead">A tiny entertainment site built around one deliberately over-the-top internet prank. There is no software download, no background process, and no attempt to control your computer.</p>
+    <div data-ad-zone="top"></div>
+    <h3>The gag</h3>
+    <p>The site greets visitors with the phrase "you just got botnetted boiiii" — which sounds alarming — and then immediately explains that nothing happened. The contrast between the dramatic headline and the calm explanation is the entire joke.</p>
+    <div data-ad-zone="mid-1"></div>
+    <h3>What this site is not</h3>
+    <p>It is not a security tool. It does not scan your device. It does not detect infections. It does not require any downloads, payments, or account creation. It is a single static website with some JavaScript for navigation and ad injection.</p>
+    <h3>What this site is</h3>
+    <p>An admittedly ad-heavy novelty page that uses the prank as a hook to deliver a small amount of genuinely useful information about botnets and online safety. The ads pay for hosting. Probably. Eventually.</p>
+    <div data-ad-zone="mid-2"></div>
+    <h3>Why so many ads?</h3>
+    <p>Because the internet is mostly ads now, and this site leans into that reality with uncomfortable enthusiasm. Every ad you see is a real ad unit served through the same network. We don't pretend they're anything else.</p>
+    <div data-ad-zone="mid-3"></div>
+    <h3>Who runs this</h3>
+    <p>An independent developer who thought the joke was funny and decided to learn how ad networks work at the same time. There is no company, no team, and no editorial board. There is just one person, one joke, and an awful lot of iframes.</p>
+    <div data-ad-zone="mid-4"></div>
+    <div class="notice"><strong>Reminder:</strong> If any website ever claims your computer is infected and demands immediate action, treat that as a major red flag. Real security tools don't operate that way.</div>
+  </section>
+`,
+prank: () => `
+  <section>
+    <h2>The prank explained</h2>
+    <p>The joke works because "botnet" sounds alarmingly serious. In reality, the page is simply playing with that idea. Once the headline has done its job, the site tells you exactly what happened instead of trying to scare you into clicking something.</p>
+    <div data-ad-zone="top"></div>
+    <h3>Step 1: The shock</h3>
+    <p>Visitors land on a page that loudly announces they have been "botnetted." The phrasing is deliberately ridiculous ("boiiii") to signal that it's not a real warning. The all-caps headline and purple glow do most of the theatrical work.</p>
+    <div data-ad-zone="mid-1"></div>
+    <h3>Step 2: The relief</h3>
+    <p>Almost immediately, the page explains that nothing actually happened. There's no scan, no infection, no payload. The headline was the entire joke, and the rest of the site exists to make that clear.</p>
+    <h3>Step 3: The actual lesson</h3>
+    <p>The prank is also a setup for a small amount of real education: what botnets actually are, how devices get compromised, and how to reduce risk. The joke gets you in the door; the information is the part that matters.</p>
+    <div data-ad-zone="mid-2"></div>
+    <div class="notice"><strong>Important:</strong> If a website claims your computer is infected and immediately demands payment, a download, or a phone call, treat that as a major warning sign. Legitimate security tools should provide enough information for you to verify the claim independently.</div>
+    <div data-ad-zone="mid-3"></div>
+    <h3>Why this works as a joke</h3>
+    <p>Scareware — fake security alerts that demand money or downloads — is a real and common scam. This site mocks that pattern by mimicking the dramatic opener and then refusing to follow through with the con. The fact that it's surrounded by ads is part of the satire, sort of. Mostly it's just for money.</p>
+    <div data-ad-zone="mid-4"></div>
+    <h3>Is it funny?</h3>
+    <p>That depends entirely on your tolerance for early-2010s internet humor and aggressive monetization. If you're laughing, great. If you're annoyed, also great — that's basically the intended range of responses.</p>
+  </section>
+`,
+botnets: () => `
+  <section>
+    <h2>So what actually is a botnet?</h2>
+    <p>A botnet is a collection of internet-connected devices that have been compromised and are being controlled or coordinated by someone else. Botnets can be used for things such as distributed denial of service attacks, spam, credential attacks, or other abusive activity.</p>
+    <div data-ad-zone="top"></div>
+    <h3>How devices end up in one</h3>
+    <p>Common routes include malicious software, compromised accounts, vulnerable services, and social engineering. Keeping software updated, using unique passwords, enabling multi-factor authentication, and avoiding untrusted downloads all reduce risk.</p>
+    <div data-ad-zone="mid-1"></div>
+    <h3>The components</h3>
+    <p>A typical botnet has three parts: the bots themselves (compromised devices), a command-and-control server (where the operator sends instructions), and a payload (the actual malicious task). Some modern botnets use peer-to-peer communication to avoid relying on a single server.</p>
+    <div data-ad-zone="mid-2"></div>
+    <h3>What botnets do</h3>
+    <ul>
+      <li><strong>DDoS attacks:</strong> flooding a target with traffic until it can't respond.</li>
+      <li><strong>Spam campaigns:</strong> sending millions of emails from compromised machines.</li>
+      <li><strong>Credential stuffing:</strong> testing stolen username/password pairs at scale.</li>
+      <li><strong>Cryptomining:</strong> using someone else's CPU/GPU to mine cryptocurrency.</li>
+      <li><strong>Proxying:</strong> routing traffic through compromised devices to hide the origin.</li>
+    </ul>
+    <div data-ad-zone="mid-3"></div>
+    <h3>Why this site isn't one</h3>
+    <p>This page doesn't attempt to persist on your machine, communicate with other devices, or execute a hidden payload. The "botnet" exists only in the joke text. The only thing being coordinated here is the ad scheduling, and even that is mostly handled by the ad network.</p>
+    <div data-ad-zone="mid-4"></div>
+    <h3>Famous examples (for context)</h3>
+    <p>Historical botnets like Mirai, Conficker, and Emotet are useful to read about if you want to understand how these networks grow and what they're capable of. None of them are related to this site in any way.</p>
+  </section>
+`,
+protection: () => `
+  <section>
+    <h2>Staying safe online</h2>
+    <p class="lead">A short, no-nonsense checklist for reducing your risk of ending up as part of a botnet — or any other kind of compromise.</p>
+    <div data-ad-zone="top"></div>
+    <h3>The basics</h3>
+    <ul class="checklist">
+      <li>Keep your operating system and browser updated. Most compromises exploit known vulnerabilities that already have patches.</li>
+      <li>Use a password manager and a unique password for every account. Reused passwords are the easiest way to get owned.</li>
+      <li>Enable multi-factor authentication wherever it's offered. Especially on email and banking.</li>
+      <li>Don't install software from sources you don't trust. "Cracked" downloads are very often malware.</li>
+      <li>Be suspicious of urgent pop-ups claiming your device is infected. Real security products don't behave like that.</li>
+      <li>Use an ad blocker on unfamiliar sites. (Yes, we know. We're not proud.)</li>
+      <li>Restart your router occasionally and apply firmware updates when the manufacturer releases them.</li>
+      <li>Avoid public Wi-Fi for sensitive logins unless you're using a VPN you trust.</li>
+    </ul>
+    <div data-ad-zone="mid-1"></div>
+    <h3>Signs you might be compromised</h3>
+    <p>Unusual network activity, fans spinning for no reason, unexpected pop-ups, accounts you don't recognize, friends getting weird messages from you, or your device suddenly running much slower than usual. None of these are conclusive on their own, but they're worth investigating.</p>
+    <div data-ad-zone="mid-2"></div>
+    <div class="notice"><strong>If you suspect an infection:</strong> disconnect from the internet, run a full scan with a reputable antivirus, change passwords from a different device, and consider a clean reinstall of your operating system if things are bad enough.</div>
+    <div data-ad-zone="mid-3"></div>
+    <h3>About this site's ads</h3>
+    <p>We can't control what the ad network serves. If you ever see an ad on this site that looks like a fake security warning, do not click it. Report it if the network offers a way to do so, and just close the tab. We'd rather lose the impression than have you get scammed.</p>
+  </section>
+`,
+blog: () => `
+  <section>
+    <h2>The Blog</h2>
+    <p class="lead">Loosely related thoughts about internet pranks, security, and the strange economics of ad-supported websites.</p>
+    <div data-ad-zone="top"></div>
+    <div class="blog-list">
+      <div class="blog-item" data-blog="1">
+        <span class="tag">Pranks</span><span class="tag">History</span>
+        <h3>Why "you got hacked" jokes never really died</h3>
+        <p>A short history of fake-out scare pages, from the early Flash animation era to modern single-page gags.</p>
+        <div class="meta">Posted whenever · 3 min read</div>
+      </div>
+      <div class="blog-item" data-blog="2">
+        <span class="tag">Security</span><span class="tag">Opinion</span>
+        <h3>The scam that keeps on scamming: fake antivirus pop-ups</h3>
+        <p>Why the "your PC is infected" pattern still works in 2025, and what legitimate software actually looks like.</p>
+        <div class="meta">Posted whenever · 4 min read</div>
+      </div>
+      <div class="blog-item" data-blog="3">
+        <span class="tag">Web</span><span class="tag">Money</span>
+        <h3>How many ads is too many ads?</h3>
+        <p>An honest question this site is actively failing to answer.</p>
+        <div class="meta">Posted whenever · 2 min read</div>
+      </div>
+      <div class="blog-item" data-blog="4">
+        <span class="tag">Botnets</span><span class="tag">Education</span>
+        <h3>Botnets, explained without the Hollywood nonsense</h3>
+        <p>What a botnet actually is, in plain language, with no scary red text.</p>
+        <div class="meta">Posted whenever · 5 min read</div>
+      </div>
+    </div>
+    <div data-ad-zone="mid-1"></div>
+    <div id="blog-content"></div>
+  </section>
+`,
+faq: () => `
+  <section>
+    <h2>Frequently asked questions</h2>
+    <div data-ad-zone="top"></div>
+    <details><summary>Did I actually get hacked?</summary><p>No. The headline is a joke. Simply opening this page does not mean your machine joined a botnet.</p></details>
+    <details><summary>Why is this website full of advertising?</summary><p>The site is experimenting with advertising as a way to support a small independent website. Ads are disclosed here rather than disguised as security warnings or download buttons.</p></details>
+    <div data-ad-zone="mid-1"></div>
+    <details><summary>Can I trust a website that says my PC is infected?</summary><p>Don't trust a scary message on its own. Verify claims through a security product or other independent source, and don't install software or make payments because a random page tells you to.</p></details>
+    <details><summary>Who made this?</summary><p>This is an independent novelty website. The point is the joke, followed by a small amount of genuinely useful security information.</p></details>
+    <div data-ad-zone="mid-2"></div>
+    <details><summary>Are the ads on this site safe?</summary><p>They're served by a third-party ad network. We don't control the creative. If something looks sketchy, don't click it. Use an ad blocker if you want — we won't be offended.</p></details>
+    <details><summary>Will clicking the ads support the site?</summary><p>Technically yes, depending on the ad type. But we are explicitly not asking you to click them. That would violate the ad network's terms and also our dignity.</p></details>
+    <div data-ad-zone="mid-3"></div>
+    <details><summary>Is "boiiii" still funny?</summary><p>No. It hasn't been funny since approximately 2014. That's part of the joke. We are committed to the bit.</p></details>
+    <details><summary>Can I report a problematic ad?</summary><p>Yes — please use the contact page and include a screenshot if possible. We can't remove individual ads, but we can report patterns to the network.</p></details>
+  </section>
+`,
+advertise: () => `
+  <section>
+    <h2>Advertising on notabotnet.site</h2>
+    <p class="lead">Interested in placing your ad next to a joke about botnets? This is the page for you.</p>
+    <div data-ad-zone="top"></div>
+    <h3>How ads work on this site</h3>
+    <p>All advertisements are served through a third-party ad network. We do not sell ad inventory directly. If you'd like to advertise here, you'll need to go through the network that serves our ad slots. The unit ID is right there in the page source if you're curious.</p>
+    <div data-ad-zone="mid-1"></div>
+    <h3>Ad formats available</h3>
+    <ul>
+      <li><strong>Leaderboard (728×90):</strong> shown at the top and bottom of every page.</li>
+      <li><strong>Medium rectangle (300×250):</strong> inserted between content sections.</li>
+      <li><strong>Wide skyscraper (160×600):</strong> sticky in both sidebars on desktop.</li>
+      <li><strong>Floating unit (300×250):</strong> bottom-right corner, dismissible.</li>
+      <li><strong>Interstitial (336×280):</strong> shown on page transitions.</li>
+      <li><strong>Mobile banner (320×50):</strong> served to small screens.</li>
+    </ul>
+    <div data-ad-zone="mid-2"></div>
+    <h3>What we don't allow</h3>
+    <p>We do not permit — and will report to the network — any advertisement that mimics a security warning, claims the visitor's device is infected, demands a phone call, requests remote access, or uses fake "download" buttons. The entire point of this site is to mock that kind of advertising. Don't be the joke.</p>
+    <div class="notice"><strong>Disclosure:</strong> notabotnet.site may display third-party advertisements. Advertising helps support the site and is kept separate from the site's editorial content. Advertisement content is supplied by the advertising network, not written or endorsed by this site.</div>
+    <div data-ad-zone="mid-3"></div>
+    <p class="tiny">We do not ask visitors to click advertisements, and advertising is not presented as a security alert, download prompt, or required step to use the website.</p>
+  </section>
+`,
+contact: () => `
+  <section>
+    <h2>Contact</h2>
+    <p class="lead">Reach out about anything except the joke. The joke is staying.</p>
+    <div data-ad-zone="top"></div>
+    <h3>What you can contact us about</h3>
+    <ul>
+      <li>Reporting a problematic advertisement you saw on the site.</li>
+      <li>Asking us to remove your ad creative from our rotation (we'll forward it to the network).</li>
+      <li>Suggesting improvements to the educational content.</li>
+      <li>Press or interview requests about why anyone would build this.</li>
+    </ul>
+    <div data-ad-zone="mid-1"></div>
+    <h3>What you should not contact us about</h3>
+    <ul>
+      <li>Asking us to remove the joke. The joke is the whole point.</li>
+      <li>Asking us to add more ads. We are already at the limit of what is morally defensible.</li>
+      <li>Asking us to fix the word "boiiii." It is intentionally spelled that way.</li>
+      <li>Sending us your botnet. We don't want it.</li>
+    </ul>
+    <div data-ad-zone="mid-2"></div>
+    <h3>How to reach us</h3>
+    <p>Email: <a href="mailto:hello@notabotnet.site">hello@notabotnet.site</a> (this address may or may not actually exist).</p>
+    <p>Response time: somewhere between "eventually" and "probably never."</p>
+    <div class="notice">This is a novelty website. Please don't send us anything confidential, urgent, or legally significant.</div>
+  </section>
+`
+};
 
-    <footer>
-        <div>notabotnet.site</div>
-        <div class="tiny">A harmless joke website. No actual botnet included.</div>
-    </footer>
+const BLOG_POSTS = {
+  '1': `
+    <article>
+      <h2>Why "you got hacked" jokes never really died</h2>
+      <p class="meta">Posted whenever · 3 min read</p>
+      <p>The "you've been hacked!" fake-out has been a staple of internet humor since the early 2000s. It survived the death of Flash, the rise of mobile, the decline of forums, and the great emoji rewrite of 2015. Why?</p>
+      <div data-ad-zone="blog-1-a"></div>
+      <p>Because it works on three levels. First, it briefly scares the victim. Then it relieves them. Then it makes them feel slightly embarrassed for being scared in the first place. That emotional mini-rollercoaster is, apparently, universally funny.</p>
+      <p>The format also adapts. "You've been Rickrolled" was a variant. "You just got botnetted boiiii" is another. The technology changes; the structure doesn't.</p>
+      <div data-ad-zone="blog-1-b"></div>
+      <p>What's new in 2025 is the surrounding context: a web where actual scareware is everywhere, fake security alerts are a billion-dollar industry, and ad networks are happy to host them. The joke hits differently when the threat it's mocking is real.</p>
+      <p>That's probably why this site exists at all. The prank is familiar enough to be funny, the threat is real enough to be educational, and the ads are loud enough to be self-aware. Whether that adds up to "good" is a separate question.</p>
+      <p><a data-route="blog">← Back to blog</a></p>
+    </article>
+  `,
+  '2': `
+    <article>
+      <h2>The scam that keeps on scamming: fake antivirus pop-ups</h2>
+      <p class="meta">Posted whenever · 4 min read</p>
+      <p>If you've spent any time on the internet, you've seen one: a pop-up that looks like a Windows alert, claims your computer is infected with 47 viruses, and urgently demands that you call a phone number or download a "cleaner."</p>
+      <div data-ad-zone="blog-2-a"></div>
+      <p>These are not real. They have never been real. They are designed to extract money, remote access, or both. The pattern is so consistent it's almost a genre at this point.</p>
+      <h3>The anatomy of a fake alert</h3>
+      <ul>
+        <li>Urgency: "Your PC will be disabled in 5 minutes!"</li>
+        <li>Authority: mimics Microsoft, Apple, or a known antivirus brand.</li>
+        <li>Specificity: a fake virus count, a fake IP address, a fake license key.</li>
+        <li>A single clear next step: call this number, click this button.</li>
+      </ul>
+      <div data-ad-zone="blog-2-b"></div>
+      <p>Legitimate security software does not behave this way. Real antivirus products run quietly, scan on a schedule, and report findings through their own interface — not through a browser pop-up. If you see a "warning" inside your browser, it is the browser warning you about the page, not the page warning you about your computer.</p>
+      <h3>What to do if you see one</h3>
+      <p>Close the tab. If it won't close, force-quit the browser. If you're on a phone, clear the browser from your recent apps. Do not call the number. Do not download anything. Do not enter payment information.</p>
+      <div data-ad-zone="blog-2-c"></div>
+      <p>The reason this scam persists is that it works often enough to be profitable. Even a tiny conversion rate, multiplied by millions of impressions, adds up. The best defense is just knowing the pattern — which is, in a small way, what this entire joke site is trying to teach.</p>
+      <p><a data-route="blog">← Back to blog</a></p>
+    </article>
+  `,
+  '3': `
+    <article>
+      <h2>How many ads is too many ads?</h2>
+      <p class="meta">Posted whenever · 2 min read</p>
+      <p>This is a question this site is actively, enthusiastically failing to answer.</p>
+      <div data-ad-zone="blog-3-a"></div>
+      <p>There are ads in the top banner. Ads in the sidebars. Ads between paragraphs. Ads at the bottom. A floating ad in the corner. An interstitial that pops up between pages. A "load more ads" button on the home page that, against all reason, someone might actually click.</p>
+      <p>Is this art? Is it satire? Is it just greed dressed up in a purple accent? These are all reasonable interpretations.</p>
+      <div data-ad-zone="blog-3-b"></div>
+      <p>The honest answer is that ad-supported web content exists on a spectrum. At one end, you have a single unobtrusive banner. At the other end, you have a page so dense with ads that the content is functionally invisible. This site is intentionally somewhere past the second end.</p>
+      <p>If you've made it this far, congratulations — you have a higher tolerance for nonsense than most. Please enjoy one final ad, placed here for no particular reason.</p>
+      <div data-ad-zone="blog-3-c"></div>
+      <p><a data-route="blog">← Back to blog</a></p>
+    </article>
+  `,
+  '4': `
+    <article>
+      <h2>Botnets, explained without the Hollywood nonsense</h2>
+      <p class="meta">Posted whenever · 5 min read</p>
+      <p>Pop culture has done botnets a weird disservice. In movies, hacking is a guy in a hoodie typing furiously while green text scrolls by. In reality, a botnet is mostly just a bunch of compromised devices doing boring, repetitive tasks on someone else's behalf.</p>
+      <div data-ad-zone="blog-4-a"></div>
+      <h3>The boring definition</h3>
+      <p>A botnet is a network of devices — PCs, phones, routers, IoT gadgets, anything with an internet connection — that have been compromised and are being controlled remotely. The operator sends commands; the devices execute them.</p>
+      <p>That's it. No green text required.</p>
+      <div data-ad-zone="blog-4-b"></div>
+      <h3>How they grow</h3>
+      <p>Most botnets grow by exploiting known vulnerabilities in software that hasn't been updated, by tricking users into running malware (often disguised as something legitimate), or by brute-forcing weak credentials on exposed services like routers or cameras.</p>
+      <p>Once a device is compromised, the malware typically tries to stay hidden. It doesn't want to be noticed, because a noticed infection gets cleaned up. The ideal botnet device is one whose owner never realizes anything is wrong.</p>
+      <div data-ad-zone="blog-4-c"></div>
+      <h3>What they're used for</h3>
+      <p>DDoS attacks are the most famous use, but botnets are also used to send spam, mine cryptocurrency, store and distribute illegal content, proxy traffic for other criminals, and brute-force credentials at scale. A large botnet is essentially a rented distributed computer.</p>
+      <h3>How to avoid joining one</h3>
+      <ul class="checklist">
+        <li>Update your operating system and applications.</li>
+        <li>Change default passwords on routers, cameras, and IoT devices.</li>
+        <li>Don't install software from sketchy sources.</li>
+        <li>Use an ad blocker on sites you don't trust (yes, including this one).</li>
+        <li>Restart your devices occasionally. Some malware only lives in memory.</li>
+      </ul>
+      <div data-ad-zone="blog-4-d"></div>
+      <p>That's the whole topic. No hoodie required.</p>
+      <p><a data-route="blog">← Back to blog</a></p>
+    </article>
+  `
+};
 
+// ============================================================
+// ROUTER
+// ============================================================
+let lastRoute = null;
+let interstitialShownFor = new Set();
+
+function router(){
+  const hash = (location.hash || '#/home').replace('#/','');
+  const route = hash.split('/')[0];
+  const sub = hash.split('/')[1];
+  const app = document.getElementById('app');
+
+  // active nav state
+  document.querySelectorAll('nav a').forEach(a=>{
+    a.classList.toggle('active', a.dataset.route === route);
+  });
+
+  // render page
+  if(route === 'blog' && sub && BLOG_POSTS[sub]){
+    app.innerHTML = BLOG_POSTS[sub];
+  } else if(PAGES[route]){
+    app.innerHTML = PAGES[route]();
+  } else {
+    app.innerHTML = PAGES.home();
+  }
+
+  // reset ad zones
+  document.querySelectorAll('[data-ad-zone]').forEach(z=>delete z.dataset.filled);
+  // fill ads in new content
+  fillAdZones();
+  fillSidebars();
+
+  // blog post click handlers
+  document.querySelectorAll('.blog-item').forEach(item=>{
+    item.onclick = () => { location.hash = '#/blog/' + item.dataset.blog; };
+  });
+
+  // load-more-ads button
+  const lm = document.getElementById('load-more-ads-btn');
+  if(lm){
+    lm.onclick = () => {
+      const zone = document.getElementById('extra-ads-zone');
+      if(!zone) return;
+      for(let i=0;i<5;i++){
+        const wrap = document.createElement('div');
+        wrap.style.margin = '24px 0';
+        zone.appendChild(wrap);
+        spawnAdBox(wrap);
+      }
+      zone.scrollIntoView({behavior:'smooth', block:'end'});
+    };
+  }
+
+  // route links
+  document.querySelectorAll('[data-route]').forEach(a=>{
+    if(a.tagName === 'A' || a.tagName === 'BUTTON') return;
+    a.style.cursor = 'pointer';
+    a.onclick = (e)=>{
+      e.preventDefault();
+      location.hash = '#/' + a.dataset.route;
+    };
+  });
+
+  // interstitial between route changes (but not on first load)
+  if(lastRoute && lastRoute !== route && !interstitialShownFor.has(route)){
+    interstitialShownFor.add(route);
+    spawnInterstitial();
+  }
+  lastRoute = route;
+
+  window.scrollTo(0,0);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('hashchange', router);
+window.addEventListener('load', () => {
+  if(!location.hash) location.hash = '#/home';
+  router();
+  spawnFloatingAd();
+  // periodic floating ad refresh every 60s if dismissed
+  setInterval(()=>{
+    const f = document.getElementById('floating-ad-slot');
+    if(f && f.style.display === 'none') spawnFloatingAd();
+  }, 60000);
+});
+</script>
 </body>
 </html>
